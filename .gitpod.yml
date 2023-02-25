@@ -5,6 +5,4 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
-  - command: python main.py
-
-
+    - command: python examples/text-analysis/main.py
