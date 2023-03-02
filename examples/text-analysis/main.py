@@ -16,18 +16,19 @@ def build_topics_index():
 
     for episode in data:
         summary = episode["summary"]
-        # strip out any html tag from summary text, using a regex
-        summary = re.sub(r'<[^>]*>', '', summary)
-        ep_code = episode["season"], episode["number"]
+        if (summary):
+            # strip out any html tag from summary text, using a regex
+            summary = re.sub('r<[^>]*>', '', summary)
+            ep_code = episode["season"], episode["number"]
 
-        # Create a TextBlob object and perform sentiment analysis
-        blob = TextBlob(summary)
-        nps = blob.noun_phrases
-        for np in nps:
-            if np in topics:
-                topics[np].append(ep_code)
-            else:
-                topics[np] = [ep_code]
+            # Create a TextBlob object and perform sentiment analysis
+            blob = TextBlob(summary)
+            nps = blob.noun_phrases
+            for np in nps:
+                if np in topics:
+                    topics[np].append(ep_code)
+                else:
+                    topics[np] = [ep_code]
         # sentiment_score = blob.sentiment.polarity
     return topics
 
